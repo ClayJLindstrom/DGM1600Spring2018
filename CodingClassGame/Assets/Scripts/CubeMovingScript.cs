@@ -26,11 +26,6 @@ public class CubeMovingScript : MonoBehaviour {
 		transform.Translate(0,j,0);
 		transform.Rotate(0,y,0);
 
-		if(transform.rotation.z > 15 && transform.rotation.z < 180){transform.Rotate(0,0,-turnSpeed/2);}
-		else if(transform.rotation.z < -15 && transform.rotation.z > 180){transform.Rotate(0,0,turnSpeed/2);}
-		if(transform.rotation.x > 15 && transform.rotation.x < 180){transform.Rotate(-turnSpeed/2,0,0);}
-		else if(transform.rotation.x < -15 && transform.rotation.x > 180){transform.Rotate(turnSpeed/2,0,0);}
-
 		/*if(Input.GetKey(KeyCode.W)){
 			transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
 		}

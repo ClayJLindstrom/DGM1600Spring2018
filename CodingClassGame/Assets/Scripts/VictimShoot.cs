@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shoot : MonoBehaviour {
+public class VictimShoot : MonoBehaviour {
 	public Rigidbody projectile, player;
 	public Transform shootPoint;
 	public int bulletSpeed;
@@ -12,19 +12,13 @@ public class Shoot : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player = GetComponentInParent<Rigidbody>();
-		shootPoint = GetComponent<Transform>();
 		fire = false;
-		bulletCooldown = 0.04f;
+		bulletCooldown = 0.4f;
 		timer = 0f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetButtonDown("Fire1")){
-			fire = !fire;
-		}
-		
-
 		if(fire && timer <= 0){
 			Rigidbody clone;
 			clone = (Rigidbody)Instantiate(projectile, shootPoint.position, projectile.rotation);

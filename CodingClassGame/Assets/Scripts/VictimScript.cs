@@ -5,11 +5,12 @@ using UnityEngine;
 public class VictimScript : MonoBehaviour {
 	public float moveSpeed;
 	public Transform target, chickenPen;
+	public VictimShoot shooter;
 
 	// Use this for initialization
 	void Start () {
-
-		
+		chickenPen = GameObject.FindGameObjectWithTag("Finish").GetComponent<Transform>();
+		shooter = gameObject.transform.Find("Shooter").GetComponent<VictimShoot>();
 	}
 	
 	// Update is called once per frame
@@ -19,10 +20,16 @@ public class VictimScript : MonoBehaviour {
 
 	void OnTriggerStay(Collider other){
 		if(other.gameObject.tag == "Player"){
-			Debug.Log("Target Acquired!");
 			target = other.gameObject.transform;
 			transform.LookAt(target);
 			transform.Translate(Vector3.back* moveSpeed*Time.deltaTime);
+			shooter.fire = true;
+		}
+	}
+
+	void OnTriggerExit(Collider other){
+		if(other.gameObject.tag == "Player"){
+			shooter.fire = false;
 		}
 	}
 
