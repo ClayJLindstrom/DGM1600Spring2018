@@ -12,6 +12,7 @@ public class VictimShoot : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player = GetComponentInParent<Rigidbody>();
+		bulletSpeed = 200;
 		fire = false;
 		bulletCooldown = 0.4f;
 		timer = 0f;

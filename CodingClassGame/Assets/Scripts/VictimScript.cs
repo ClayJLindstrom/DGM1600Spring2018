@@ -11,6 +11,7 @@ public class VictimScript : MonoBehaviour {
 	void Start () {
 		chickenPen = GameObject.FindGameObjectWithTag("Finish").GetComponent<Transform>();
 		shooter = gameObject.transform.Find("Shooter").GetComponent<VictimShoot>();
+		Destroy(gameObject, 120);
 	}
 	
 	// Update is called once per frame
@@ -25,10 +26,16 @@ public class VictimScript : MonoBehaviour {
 			transform.Translate(Vector3.back* moveSpeed*Time.deltaTime);
 			shooter.fire = true;
 		}
+		else if(other.gameObject.tag == "BlueDice"){
+			target = other.gameObject.transform;
+			transform.LookAt(target);
+			transform.Translate(Vector3.back* moveSpeed*Time.deltaTime);
+			shooter.fire = true;
+		}
 	}
 
 	void OnTriggerExit(Collider other){
-		if(other.gameObject.tag == "Player"){
+		if(other.gameObject.tag == "Player" || other.gameObject.tag == "BlueDice"){
 			shooter.fire = false;
 		}
 	}
