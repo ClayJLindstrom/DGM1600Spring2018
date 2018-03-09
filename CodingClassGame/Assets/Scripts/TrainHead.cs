@@ -2,20 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JaegerScript : MonoBehaviour {
+public class TrainHead : MonoBehaviour {
 	public float moveSpeed;
-	private Transform target, shooter;
+	public Transform target, shooter;
+	public int damage;
 
 	// Use this for initialization
 	void Start () {
-		moveSpeed = 2;
 		shooter = gameObject.transform.Find("Shooter").GetComponent<Transform>();
-		//Destroy(gameObject, 120);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	void OnTriggerStay(Collider other){
+		if(other.gameObject.name =="Cube"){
+			transform.LookAt(target);
+			transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+		}
+		else{Wander();}
+	}
+
+	void OnCollisionEnter(Collision other){
+		print("Train is Chugging!");
+		var hit = other.gameObject;
+		var health = hit.GetComponent<PlayerHealth>();
+
+		//add damage
+		if(health != null){
+			health.TakeDamage(damage);
+		}
 	}
 
 	void Wander(){
@@ -31,22 +49,5 @@ public class JaegerScript : MonoBehaviour {
 				transform.Rotate(0, randomNum, 0);
 			}
 		}
-	}
-
-	void Follow(){
-		transform.LookAt(target);
-		transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
-	}
-
-	void OnTriggerStay(Collider other){
-		if(other.gameObject.tag == "Player"){
-			if(target == null){target = other.gameObject.GetComponent<Transform>();}
-			Follow();
-		}
-		else if(other.gameObject.tag == "RedDice"){
-			if(target == null){target = other.gameObject.GetComponent<Transform>();}
-			Follow();
-		}
-		else{Wander();}
 	}
 }
