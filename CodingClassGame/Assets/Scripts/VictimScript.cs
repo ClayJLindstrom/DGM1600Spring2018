@@ -22,21 +22,34 @@ public class VictimScript : MonoBehaviour {
 	void OnTriggerStay(Collider other){
 		if(other.gameObject.tag == "Player"){
 			target = other.gameObject.transform;
-			transform.LookAt(target);
-			transform.Translate(Vector3.back* moveSpeed*Time.deltaTime);
-			shooter.fire = true;
 		}
 		else if(other.gameObject.tag == "BlueDice"){
 			target = other.gameObject.transform;
-			transform.LookAt(target);
-			transform.Translate(Vector3.back* moveSpeed*Time.deltaTime);
-			shooter.fire = true;
 		}
+		if(target != null){
+			float forwardAngle = Vector3.Angle(transform.forward, target.position - transform.position);
+			if(transform.rotation.eulerAngles.x + 7 > 14){
+				transform.Rotate(Vector3.right * moveSpeed * Time.deltaTime);
+			}
+			if(transform.rotation.eulerAngles.z + 7 > 14){
+				transform.Rotate(Vector3.forward * moveSpeed * Time.deltaTime);
+			}
+			if(forwardAngle > 10){
+				transform.Rotate(Vector3.up * moveSpeed * Time.deltaTime);
+			}
+			else{
+				//transform.Translate(Vector3.back* moveSpeed*Time.deltaTime);
+				shooter.fire = true;
+			}
+			//transform.LookAt(target);
+		}
+		else{shooter.fire = false;}
 	}
 
 	void OnTriggerExit(Collider other){
 		if(other.gameObject.tag == "Player" || other.gameObject.tag == "BlueDice"){
 			shooter.fire = false;
+			target = null;
 		}
 	}
 
