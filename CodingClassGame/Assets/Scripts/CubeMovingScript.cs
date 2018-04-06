@@ -39,4 +39,11 @@ public class CubeMovingScript : MonoBehaviour {
 			transform.Translate(Vector3.left * moveSpeed *  Time.deltaTime);
 		}*/
 	}
+
+	/*void OnCollisionEnter(Collision other){
+		if(other.gameObject.tag == "Respawn"){
+			transform.position = chickenPen.position;
+			transform.rotation = chickenPen.rotation;
+		}
+	}*/
 }

@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour {
 
@@ -27,10 +29,10 @@ public class ScoreManager : MonoBehaviour {
 		}
 		if(winScore == score){
 			print("New Record!");
-			wintext.GetComponent<Text>().enabled = false;
+			winText.GetComponent<Text>().enabled = false;
 			Time.timeScale = 0;
 		}
-		if(input.GetKeyDown(KeyCode.Escape)){
+		if(Input.GetKeyDown(KeyCode.Escape)){
 			SceneManager.LoadScene(0);
 		}
 	}
