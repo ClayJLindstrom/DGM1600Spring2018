@@ -39,7 +39,7 @@ public class Shoot : MonoBehaviour {
 			bulletStock -= 1;
 		}
 		else if(!fire){
-			if(bulletStock < bulletStockMax){bulletStock += Time.deltaTime * 5;}
+			if(bulletStock < bulletStockMax){bulletStock += Time.deltaTime * 25;}
 		}
 	}
 }
