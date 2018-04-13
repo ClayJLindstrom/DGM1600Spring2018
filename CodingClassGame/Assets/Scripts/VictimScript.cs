@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class VictimScript : MonoBehaviour {
-	public float moveSpeed;
+	public float moveSpeed, errorRoom;
 	public Transform target, chickenPen;
 	public VictimShoot shooter;
 
@@ -11,7 +11,8 @@ public class VictimScript : MonoBehaviour {
 	void Start () {
 		chickenPen = GameObject.FindGameObjectWithTag("Finish").GetComponent<Transform>();
 		shooter = gameObject.transform.Find("Shooter").GetComponent<VictimShoot>();
-		Destroy(gameObject, 120);
+		Destroy(gameObject, 40);
+		errorRoom = 15;
 	}
 	
 	// Update is called once per frame
@@ -34,7 +35,7 @@ public class VictimScript : MonoBehaviour {
 			if(transform.rotation.eulerAngles.z + 7 > 14){
 				transform.Rotate(Vector3.forward * moveSpeed * Time.deltaTime);
 			}
-			if(forwardAngle > 10){
+			if(forwardAngle > errorRoom){
 				transform.Rotate(Vector3.up * moveSpeed * Time.deltaTime);
 			}
 			else{
@@ -55,6 +56,11 @@ public class VictimScript : MonoBehaviour {
 
 	void OnCollisionEnter(Collision other){
 		if(other.gameObject.tag == "Respawn"){
+			transform.position = chickenPen.position;
+			transform.rotation = chickenPen.rotation;
+			GameObject.Find("Canvas").GetComponent<ScoreManager>().AddPoints(1);
+		}
+		else if(other.gameObject.tag == "BadRespawn"){
 			transform.position = chickenPen.position;
 			transform.rotation = chickenPen.rotation;
 		}

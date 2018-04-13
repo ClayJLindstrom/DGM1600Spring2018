@@ -8,12 +8,13 @@ public class CubeMovingScript : MonoBehaviour {
 
 	public Vector3 mover;
 	public Quaternion rotate;
+	public Transform chickenPen;
 
 	public float moveSpeed, turnSpeed, jumpHeight;
 
 	// Use this for initialization
 	void Start () {
-		
+		chickenPen = GameObject.FindGameObjectWithTag("PlayerRespawn").GetComponent<Transform>();
 	}
 	
 	// Update is called once per frame
@@ -40,10 +41,16 @@ public class CubeMovingScript : MonoBehaviour {
 		}*/
 	}
 
-	/*void OnCollisionEnter(Collision other){
-		if(other.gameObject.tag == "Respawn"){
+	void OnCollisionEnter(Collision other){
+		if(other.gameObject.tag == "BadRespawn"){
 			transform.position = chickenPen.position;
 			transform.rotation = chickenPen.rotation;
+			GameObject.Find("Canvas").GetComponent<ScoreManager>().Reset();
+			GetComponent<PlayerHealth>().health -= 1;
+			GetComponent<Rigidbody>().velocity = Vector3.zero;
 		}
-	}*/
+		else if(other.gameObject.tag == "Gold"){
+			GameObject.Find("Canvas").GetComponent<ScoreManager>().AddPoints(50);
+		}
+	}
 }

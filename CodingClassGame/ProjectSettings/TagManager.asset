@@ -7,6 +7,9 @@ TagManager:
   - Wall
   - RedDice
   - BlueDice
+  - BadRespawn
+  - PlayerRespawn
+  - Gold
   layers:
   - Default
   - TransparentFX

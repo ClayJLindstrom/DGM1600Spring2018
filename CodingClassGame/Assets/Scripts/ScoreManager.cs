@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour {
 
 	public static int score;
 	public int winScore;
-	public Text text, winText;
+	public Text scoreText, winText;
 
 
 	// Use this for initialization
@@ -19,27 +19,29 @@ public class ScoreManager : MonoBehaviour {
 	// Update is called once per frame
 	void Start () {
 		winText.GetComponent<Text>().enabled = false;
-		text = GetComponent<Text>();
+		//scoreText = GetComponent<Text>();
 		score = 0;
+		winScore = 50;
 	}
 
 	void Update(){
+		scoreText.text = score.ToString();
 		if(score < 0){
 			score = 0;
 		}
-		if(winScore == score){
+		if(winScore <= score){
 			print("New Record!");
-			winText.GetComponent<Text>().enabled = false;
+			winText.GetComponent<Text>().enabled = true;
 			Time.timeScale = 0;
 		}
 		if(Input.GetKeyDown(KeyCode.Escape)){
 			SceneManager.LoadScene(0);
 		}
 	}
-	public static void AddPoints(int pointsToAdd){
+	public void AddPoints(int pointsToAdd){
 		score += pointsToAdd;
 	}
-	public static void Reset(){
+	public void Reset(){
 		score = 0;
 	}
 }
