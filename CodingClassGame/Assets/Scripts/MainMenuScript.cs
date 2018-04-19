@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour {
+	public Collider collider;
 
 	public int levelToLoad;
 
@@ -14,5 +15,9 @@ public class MainMenuScript : MonoBehaviour {
 	public void LevelExit(){
 		//Application.Quit();
 		
+	}
+
+	void OnCollisionEnter(){
+		LoadLevel();
 	}
 }
