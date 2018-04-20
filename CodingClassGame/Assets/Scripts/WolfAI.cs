@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WolfAI : MonoBehaviour {
+public class WolfAI : MonoBehaviour{
 
 	public Transform player;
 	public float speed, alertDist, wanderRadius, wanderTimer, attackDist;
@@ -19,6 +19,8 @@ public class WolfAI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+		timer = wanderTimer;
 		state = GetComponent<Animator>();
 		distance = Vector3.Distance(player.position, transform.position);
 	}
