@@ -9,7 +9,7 @@ public class JaegerHealth : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		currentHealth = maxHealth;
+		currentHealth = 3;
 	}
 	
 	// Update is called once per frame
@@ -19,15 +19,17 @@ public class JaegerHealth : MonoBehaviour {
 
 	public void TakeDamage(int amount){
 		currentHealth -= amount;
+		Debug.Log("Made It");
 		if(currentHealth <= 0){
 			currentHealth = 0;
 			print("Blue Tank has Died");
 			//add points
 			//scoreManager.AddPoints(points);
 			//move wolf to spawn point
-			transform.position = spawnPoint.position;
-			transform.rotation = spawnPoint.rotation;
-			currentHealth = maxHealth;
+			//transform.position = spawnPoint.position;
+			//transform.rotation = spawnPoint.rotation;
+			//currentHealth = maxHealth;
+			Destroy(gameObject);
 		}
 	}
 }

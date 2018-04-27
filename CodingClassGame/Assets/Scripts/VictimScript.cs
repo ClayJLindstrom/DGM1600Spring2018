@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class VictimScript : MonoBehaviour {
-	public float moveSpeed, errorRoom;
+	public float moveSpeed, errorRoom, turnSpeed;
 	public Transform target, chickenPen;
 	public VictimShoot shooter;
 
@@ -12,12 +12,31 @@ public class VictimScript : MonoBehaviour {
 		chickenPen = GameObject.FindGameObjectWithTag("Finish").GetComponent<Transform>();
 		shooter = gameObject.transform.Find("Shooter").GetComponent<VictimShoot>();
 		Destroy(gameObject, 40);
-		errorRoom = 15;
+		errorRoom = 5;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(target != null){
+			float forwardAngle = Vector3.Angle(transform.forward, target.position - transform.position);
+			/*if(transform.rotation.eulerAngles.x + 7 > 14){
+				transform.Rotate(Vector3.right * moveSpeed * Time.deltaTime);
+			}
+			if(transform.rotation.eulerAngles.z + 7 > 14){
+				transform.Rotate(Vector3.forward * moveSpeed * Time.deltaTime);
+			}*/
+			if(forwardAngle > errorRoom){
+				transform.Rotate(Vector3.up * -turnSpeed * Time.deltaTime);
+			}
+			else{
+				if(Vector3.Distance(target.position, transform.position) > 7){
+					transform.Translate(Vector3.back* moveSpeed*Time.deltaTime);
+				}
+				shooter.fire = true;
+			}
+			//transform.LookAt(target);
+		}
+		else{shooter.fire = false; Wander();}
 	}
 
 	void OnTriggerStay(Collider other){
@@ -27,24 +46,6 @@ public class VictimScript : MonoBehaviour {
 		else if(other.gameObject.tag == "BlueDice"){
 			target = other.gameObject.transform;
 		}
-		if(target != null){
-			float forwardAngle = Vector3.Angle(transform.forward, target.position - transform.position);
-			if(transform.rotation.eulerAngles.x + 7 > 14){
-				transform.Rotate(Vector3.right * moveSpeed * Time.deltaTime);
-			}
-			if(transform.rotation.eulerAngles.z + 7 > 14){
-				transform.Rotate(Vector3.forward * moveSpeed * Time.deltaTime);
-			}
-			if(forwardAngle > errorRoom){
-				transform.Rotate(Vector3.up * moveSpeed * Time.deltaTime);
-			}
-			else{
-				//transform.Translate(Vector3.back* moveSpeed*Time.deltaTime);
-				shooter.fire = true;
-			}
-			//transform.LookAt(target);
-		}
-		else{shooter.fire = false;}
 	}
 
 	void OnTriggerExit(Collider other){
@@ -63,6 +64,22 @@ public class VictimScript : MonoBehaviour {
 		else if(other.gameObject.tag == "BadRespawn"){
 			transform.position = chickenPen.position;
 			transform.rotation = chickenPen.rotation;
+		}
+	}
+
+
+	void Wander(){
+		transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+		int randomNum = Random.Range(0,360);
+		Vector3 fwd = transform.TransformDirection(Vector3.forward);
+		RaycastHit hit;
+
+		Debug.DrawRay(transform.position, fwd, Color.red);
+
+		if(Physics.Raycast(transform.position, fwd, out hit, 3)){
+			if(hit.collider.tag == "Wall"){
+				transform.Rotate(0, randomNum, 0);
+			}
 		}
 	}
 }

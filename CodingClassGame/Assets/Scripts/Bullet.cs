@@ -16,6 +16,22 @@ public class Bullet : MonoBehaviour {
 		
 	}
 
+	void OnTriggerEnter(Collider other){
+		if(other.gameObject.tag == "Player"){
+			other.gameObject.GetComponent<PlayerHealth>().health -= 1;
+		}
+		else if(other.gameObject.tag == "RedDice" && other.isTrigger == false){
+			other.gameObject.transform.position = other.gameObject.GetComponent<VictimScript>().chickenPen.position;
+			other.gameObject.transform.rotation = other.gameObject.GetComponent<VictimScript>().chickenPen.rotation;
+			GameObject.Find("Canvas").GetComponent<ScoreManager>().AddPoints(1);
+
+		}
+		else if(other.gameObject.tag == "BlueDice" && other.isTrigger == false){
+			other.gameObject.GetComponent<JaegerHealth>().TakeDamage(damage);
+			GameObject.Find("Canvas").GetComponent<ScoreManager>().AddPoints(1);
+		}
+	}
+
 	IEnumerator DestroyBullet(){
 		yield return new WaitForSeconds(time);
 		Destroy(gameObject);

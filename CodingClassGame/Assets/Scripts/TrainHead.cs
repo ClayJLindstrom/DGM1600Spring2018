@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class TrainHead : MonoBehaviour {
 	public float moveSpeed;
-	public Transform target, shooter;
+	public Transform target, shooter, chickenPen;
 	public int damage;
 
 	// Use this for initialization
 	void Start () {
 		shooter = gameObject.transform.Find("Shooter").GetComponent<Transform>();
+		chickenPen = GameObject.FindGameObjectWithTag("Finish").GetComponent<Transform>();
 	}
 	
 	// Update is called once per frame
@@ -26,13 +27,16 @@ public class TrainHead : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision other){
-		print("Train is Chugging!");
 		var hit = other.gameObject;
 		var health = hit.GetComponent<PlayerHealth>();
 
 		//add damage
 		if(health != null){
-			health.TakeDamage(damage);
+			//health.TakeDamage(damage);
+		}
+		if(hit.tag == "BadRespawn"){
+			transform.position = chickenPen.position;
+			transform.rotation = chickenPen.rotation;
 		}
 	}
 

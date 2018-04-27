@@ -14,10 +14,10 @@ public class Shoot : MonoBehaviour {
 		player = GetComponentInParent<Rigidbody>();
 		shootPoint = GetComponent<Transform>();
 		fire = false;
-		bulletCooldown = 0.04f;
+		bulletCooldown = 0.4f;
 		timer = 0f;
-		bulletStockMax = 75;
-		bulletStock = 75;
+		bulletStockMax = 1;
+		bulletStock = 1;
 	}
 	
 	// Update is called once per frame
@@ -27,7 +27,7 @@ public class Shoot : MonoBehaviour {
 			fire = !fire;
 		}
 
-		if(bulletStock <= 0){fire = false; timer = bulletCooldown * 25;}
+		//if(bulletStock <= 0){fire = false; timer = bulletCooldown * 25;}
 		
 
 		if(fire && timer <= 0){
@@ -36,10 +36,11 @@ public class Shoot : MonoBehaviour {
 			clone.velocity = shootPoint.TransformDirection (Vector3.up * bulletSpeed);
 			//player.AddForce(shootPoint.forward * 450);
 			timer = bulletCooldown;
-			bulletStock -= 1;
+			//bulletStock -= 1;
+			fire = false;
 		}
 		else if(!fire){
-			if(bulletStock < bulletStockMax){bulletStock += Time.deltaTime * 25;}
+			//if(bulletStock < bulletStockMax){bulletStock += Time.deltaTime * 5;}
 		}
 	}
 }

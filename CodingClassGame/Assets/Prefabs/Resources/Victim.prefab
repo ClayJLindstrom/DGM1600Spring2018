@@ -61,6 +61,7 @@ GameObject:
   - component: {fileID: 54086545625064772}
   - component: {fileID: 65722001198488042}
   - component: {fileID: 114885647079447762}
+  - component: {fileID: 114803813220679104}
   m_Layer: 0
   m_Name: Victim
   m_TagString: BlueDice
@@ -138,13 +139,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1789762300272492}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 1.02}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4485116258506750}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4555726068223952
 Transform:
   m_ObjectHideFlags: 1
@@ -340,7 +341,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!65 &65186242627770140
 BoxCollider:
@@ -398,6 +399,21 @@ MonoBehaviour:
   fireSpeed: 0
   bulletCooldown: 0
   timer: 0
+--- !u!114 &114803813220679104
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1787960705183666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c31795e3b721ae843b5f12b047fafad4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 3
+  points: 0
+  spawnPoint: {fileID: 0}
 --- !u!114 &114885647079447762
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -409,9 +425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81074c033442b3f4a9a993981c8d9f13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
-  target: {fileID: 0}
-  shooter: {fileID: 0}
+  moveSpeed: 80
 --- !u!136 &136236955034243220
 CapsuleCollider:
   m_ObjectHideFlags: 1

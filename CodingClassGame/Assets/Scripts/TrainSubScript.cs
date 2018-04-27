@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TrainSubScript : MonoBehaviour {
-	public Transform shooter1, shooter2, pointer;
+	public Transform shooter1, shooter2, pointer, chickenPen;
 	public Rigidbody bullet;
 	private float moveSpeed, timer, fireRate, bulletSpeed;
 
@@ -11,6 +11,7 @@ public class TrainSubScript : MonoBehaviour {
 	void Start () {
 		shooter1 = gameObject.transform.Find("Shooter").GetComponent<Transform>();
 		shooter2 = gameObject.transform.Find("Shooter2").GetComponent<Transform>();
+		chickenPen = GameObject.FindGameObjectWithTag("Finish").GetComponent<Transform>();
 		moveSpeed = 50;
 		fireRate = 1;
 		bulletSpeed = 200;
@@ -33,5 +34,12 @@ public class TrainSubScript : MonoBehaviour {
 		}
 		
 		if(pointer.gameObject == null){Debug.Log("Head's Gone"); Destroy(gameObject);}
+	}
+
+	void OnCollisionEnter(Collision other){
+		if(other.gameObject.tag == "BadRespawn"){
+			transform.position = chickenPen.position;
+			transform.rotation = chickenPen.rotation;
+		}
 	}
 }

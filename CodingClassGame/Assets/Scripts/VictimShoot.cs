@@ -14,7 +14,7 @@ public class VictimShoot : MonoBehaviour {
 		player = GetComponentInParent<Rigidbody>();
 		bulletSpeed = 200;
 		fire = false;
-		bulletCooldown = 0.4f;
+		bulletCooldown = 0.8f;
 		timer = 0f;
 	}
 	

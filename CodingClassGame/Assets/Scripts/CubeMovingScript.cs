@@ -42,7 +42,10 @@ public class CubeMovingScript : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision other){
-		if(other.gameObject.tag == "BadRespawn"){
+		if(other.gameObject.tag == "Respawn"){
+			GetComponent<PlayerHealth>().health -= 1;
+		}
+		else if(other.gameObject.tag == "BadRespawn"){
 			transform.position = chickenPen.position;
 			transform.rotation = chickenPen.rotation;
 			GameObject.Find("Canvas").GetComponent<ScoreManager>().Reset();

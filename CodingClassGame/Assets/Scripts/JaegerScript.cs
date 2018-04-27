@@ -15,6 +15,13 @@ public class JaegerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(target != null){
+			if(Vector3.Distance(target.position, transform.position) > 10){
+				target = null;
+			}
+			Follow();
+		}
+		else{Wander();}
 		
 	}
 
@@ -41,12 +48,9 @@ public class JaegerScript : MonoBehaviour {
 	void OnTriggerStay(Collider other){
 		if(other.gameObject.tag == "Player"){
 			if(target == null){target = other.gameObject.GetComponent<Transform>();}
-			Follow();
 		}
 		else if(other.gameObject.tag == "RedDice"){
 			if(target == null){target = other.gameObject.GetComponent<Transform>();}
-			Follow();
 		}
-		else{Wander();}
 	}
 }

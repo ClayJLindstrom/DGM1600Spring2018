@@ -13,11 +13,13 @@ public class MainMenuScript : MonoBehaviour {
 	}
 
 	public void LevelExit(){
-		//Application.Quit();
+		Application.Quit();
 		
 	}
 
-	void OnCollisionEnter(){
-		LoadLevel();
+	void OnCollisionEnter(Collision other){
+		if(other.gameObject.tag == "Player"){
+			LoadLevel();
+		}
 	}
 }
