@@ -1,0 +1,60 @@
+//Classes are basically play scripts for characters on a game "scene".
+//Classes can come with custom variables, and with custom functions to act with such variables as well.
+//Classes can also have parent classes that the child classes inherit functions and variables from.
+//For example, if common dogs were a class, they would have factors such as speed, hunger, or slobber,
+//and functions such as ChaseBall(), Eat(), and ChaseBallAgain().
+//the dogs could also inherit from a parent class named Canis, after the dogs' genis.
+
+//Examples
+public class Character : Monobehavior {
+
+  //bunch of unique variables.
+  string name;
+  string race;
+  float attack;
+  
+  //This is a constructor to make an object that acts with this script.
+  public Character(){
+    name = "Lloyd Irving";
+    race = "Human";
+    attack = 1;
+  }
+  
+  //constructor with definable parameters
+  public Character(string n, string r, float a){
+    name = n;
+    race = r;
+    attack = a;
+  }
+}
+
+//return class
+public class Damage : Monobehavior {
+  
+  //more variables
+  float attack, luck, accuracy;
+  
+  //function of type float, to return a float instead of nothing.
+  public float Damage(float a, float l, float c){
+    attack = a;
+    luck = l;
+    accuracy = c;
+    
+    float damage = attack * (accuracy / 3) + (luck * 2);
+    return damage;
+  }
+}
+
+
+public class Targeting : Monobehavior {
+  
+  public Vector3 ComplexMidpoint(List<Transform> people){
+    Vector3 midPoint = Vector3.zero;
+    foreach(Transform peep in people){
+      midPoint.x += bullet.position.x;
+      midPoint.y += bullet.position.y;
+    }
+    midPoint = midPoint / people.Count;
+    return midPoint;
+  }
+}
