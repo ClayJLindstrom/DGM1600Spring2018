@@ -26,7 +26,9 @@ public class VictimScript : MonoBehaviour {
 				transform.Rotate(Vector3.forward * moveSpeed * Time.deltaTime);
 			}*/
 			if(forwardAngle > errorRoom){
-				transform.Rotate(Vector3.up * -turnSpeed * Time.deltaTime);
+				//transform.Rotate(Vector3.up * -turnSpeed * Time.deltaTime);
+				//transform.LookAt(target);
+				transform.forward = target.position - transform.position;
 			}
 			else{
 				if(Vector3.Distance(target.position, transform.position) > 14){
@@ -68,6 +70,7 @@ public class VictimScript : MonoBehaviour {
 			transform.rotation = chickenPen.rotation;
 		}
 		else if(other.gameObject.tag == "BlueDice"){
+			gameObject.tag = "Untagged";
 			transform.position = chickenPen.position;
 			transform.rotation = chickenPen.rotation;
 			GameObject.Find("Canvas").GetComponent<ScoreManager>().AddPoints(-2f);

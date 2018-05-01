@@ -426,6 +426,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 40
+  target: {fileID: 0}
+  shooter: {fileID: 0}
 --- !u!136 &136236955034243220
 CapsuleCollider:
   m_ObjectHideFlags: 1

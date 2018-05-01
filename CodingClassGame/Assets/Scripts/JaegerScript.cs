@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class JaegerScript : MonoBehaviour {
 	public float moveSpeed= 2;
-	private Transform target, shooter;
+	public Transform target, shooter;
 
 	// Use this for initialization
 	void Start () {
@@ -15,9 +15,9 @@ public class JaegerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(target != null){
-			if(Vector3.Distance(target.position, transform.position) > 10){
+			/*if(Vector3.Distance(target.position, transform.position) > 10){
 				target = null;
-			}
+			}*/
 			Follow();
 		}
 		else{Wander();}
@@ -40,16 +40,27 @@ public class JaegerScript : MonoBehaviour {
 	}
 
 	void Follow(){
+		print(target.position.x.ToString());
 		transform.LookAt(target);
 		transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
 	}
 
-	void OnTriggerStay(Collider other){
+	void OnTriggerEnter(Collider other){
 		if(other.gameObject.tag == "Player"){
-			if(target == null){target = other.gameObject.GetComponent<Transform>();}
+			target = other.gameObject.GetComponent<Transform>();
 		}
 		else if(other.gameObject.tag == "RedDice"){
 			if(target == null){target = other.gameObject.GetComponent<Transform>();}
+		}
+	}
+
+	void OnCollisionEnter(Collision other){
+		if(other.gameObject.tag == "Player"){
+			GameObject.Find("Canvas").GetComponent<ScoreManager>().AddPoints(-1);
+			other.gameObject.GetComponent<PlayerHealth>().health -= 1;
+			target = null;
+			int randomNum = Random.Range(0,360);
+			transform.Rotate(0, randomNum, 0);
 		}
 	}
 }

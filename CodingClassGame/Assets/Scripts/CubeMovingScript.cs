@@ -14,7 +14,7 @@ public class CubeMovingScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		chickenPen = GameObject.FindGameObjectWithTag("PlayerRespawn").GetComponent<Transform>();
+		//chickenPen = GameObject.FindGameObjectWithTag("PlayerRespawn").GetComponent<Transform>();
 	}
 	
 	// Update is called once per frame

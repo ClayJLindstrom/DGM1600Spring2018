@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour {
 	public const int maxHealth = 10;
 	public int health;
 
-	public Text hp, maxHP;
+	public Text hp, maxHP, winText;
 
 	// Use this for initialization
 	void Start () {
@@ -19,13 +19,16 @@ public class PlayerHealth : MonoBehaviour {
 	void Update () {
 		hp.text = health.ToString();
 		maxHP.text = maxHealth.ToString();
+
+		if(health <= 0){
+			health = 0;
+			Time.timeScale = 0;
+			winText.GetComponent<Text>().enabled = true;
+			winText.text = "YOU ARE DEAD!";
+		}
 	}
 
 	public void TakeDamage(int amount){
 		health -= amount;
-		if(health <= 0){
-			health = 0;
-			print("YOU ARE DEAD");
-		}
 	}
 }

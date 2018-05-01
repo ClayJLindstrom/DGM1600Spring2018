@@ -30,6 +30,7 @@ public class Bullet : MonoBehaviour {
 			other.gameObject.GetComponent<JaegerHealth>().TakeDamage(damage);
 			GameObject.Find("Canvas").GetComponent<ScoreManager>().AddPoints(1);
 		}
+		//else if (other.isTrigger == false){Destroy(gameObject);}
 	}
 
 	IEnumerator DestroyBullet(){
