@@ -73,7 +73,7 @@ public class VictimScript : MonoBehaviour {
 			gameObject.tag = "Untagged";
 			transform.position = chickenPen.position;
 			transform.rotation = chickenPen.rotation;
-			GameObject.Find("Canvas").GetComponent<ScoreManager>().AddPoints(-2f);
+			GameObject.Find("Canvas").GetComponent<ScoreManager>().AddPoints(-1f);
 		}
 	}
 
