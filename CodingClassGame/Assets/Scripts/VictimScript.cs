@@ -11,7 +11,7 @@ public class VictimScript : MonoBehaviour {
 	void Start () {
 		chickenPen = GameObject.FindGameObjectWithTag("Finish").GetComponent<Transform>();
 		shooter = gameObject.transform.Find("Shooter").GetComponent<VictimShoot>();
-		Destroy(gameObject, 40);
+		//Destroy(gameObject, 40);
 		errorRoom = 5;
 	}
 	
@@ -29,10 +29,10 @@ public class VictimScript : MonoBehaviour {
 				transform.Rotate(Vector3.up * -turnSpeed * Time.deltaTime);
 			}
 			else{
-				if(Vector3.Distance(target.position, transform.position) > 7){
+				if(Vector3.Distance(target.position, transform.position) > 14){
 					transform.Translate(Vector3.back* moveSpeed*Time.deltaTime);
 				}
-				shooter.fire = true;
+				if(target.gameObject.tag == "Player"){shooter.fire = true;}
 			}
 			//transform.LookAt(target);
 		}
@@ -57,6 +57,8 @@ public class VictimScript : MonoBehaviour {
 
 	void OnCollisionEnter(Collision other){
 		if(other.gameObject.tag == "Respawn"){
+			shooter.enabled = false;
+			gameObject.tag = "Untagged";
 			transform.position = chickenPen.position;
 			transform.rotation = chickenPen.rotation;
 			GameObject.Find("Canvas").GetComponent<ScoreManager>().AddPoints(1);
@@ -65,11 +67,16 @@ public class VictimScript : MonoBehaviour {
 			transform.position = chickenPen.position;
 			transform.rotation = chickenPen.rotation;
 		}
+		else if(other.gameObject.tag == "BlueDice"){
+			transform.position = chickenPen.position;
+			transform.rotation = chickenPen.rotation;
+			GameObject.Find("Canvas").GetComponent<ScoreManager>().AddPoints(-2f);
+		}
 	}
 
 
 	void Wander(){
-		transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+		transform.Translate(Vector3.forward * moveSpeed * 0.5f * Time.deltaTime);
 		int randomNum = Random.Range(0,360);
 		Vector3 fwd = transform.TransformDirection(Vector3.forward);
 		RaycastHit hit;

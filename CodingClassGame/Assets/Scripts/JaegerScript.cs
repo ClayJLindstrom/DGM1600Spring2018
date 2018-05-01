@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class JaegerScript : MonoBehaviour {
-	public float moveSpeed;
+	public float moveSpeed= 2;
 	private Transform target, shooter;
 
 	// Use this for initialization
 	void Start () {
-		moveSpeed = 2;
 		shooter = gameObject.transform.Find("Shooter").GetComponent<Transform>();
 		//Destroy(gameObject, 120);
 	}

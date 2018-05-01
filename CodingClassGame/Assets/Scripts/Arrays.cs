@@ -21,8 +21,8 @@ public class Arrays : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		timer += Time.deltaTime;
-		if(timer > 3){Spawn(chicken); timer = 0; timer2 += 1;}
-		if(timer2 > 5){Spawn(wolf); timer2 = 0;}
+		if(timer > 8){Spawn(chicken); timer = 0; timer2 += 1;}
+		if(timer2 > 3){Spawn(wolf); timer2 = 0;}
 	}
 
 	void Spawn(GameObject theSpawn){

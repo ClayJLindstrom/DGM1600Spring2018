@@ -161,7 +161,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1620100212013348}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 869.33453, y: 374.1648, z: -25.44089}
+  m_LocalPosition: {x: 57.2, y: 408.7, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4021609691609916}
@@ -399,7 +399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 40
   errorRoom: 0
-  turnSpeed: 100
+  turnSpeed: 270
   target: {fileID: 0}
   chickenPen: {fileID: 0}
   shooter: {fileID: 114191285491431650}

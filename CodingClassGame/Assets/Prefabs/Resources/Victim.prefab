@@ -413,7 +413,7 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 3
   points: 0
-  spawnPoint: {fileID: 0}
+  chickenPen: {fileID: 0}
 --- !u!114 &114885647079447762
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -425,7 +425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81074c033442b3f4a9a993981c8d9f13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 80
+  moveSpeed: 40
 --- !u!136 &136236955034243220
 CapsuleCollider:
   m_ObjectHideFlags: 1

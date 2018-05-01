@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour {
 
-	public static int score;
+	public static float score;
 	public int winScore;
 	public Text scoreText, winText;
 
@@ -38,7 +38,7 @@ public class ScoreManager : MonoBehaviour {
 			SceneManager.LoadScene(0);
 		}
 	}
-	public void AddPoints(int pointsToAdd){
+	public void AddPoints(float pointsToAdd){
 		score += pointsToAdd;
 	}
 	public void Reset(){
