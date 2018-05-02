@@ -31,12 +31,12 @@ public class JaegerHealth : MonoBehaviour {
 			currentHealth = 0;
 			print("Blue Tank has Died");
 			//add points
-			scoreManager.AddPoints(1);
+			scoreManager.AddPoints(3);
 			//move wolf to spawn point
-			transform.position = chickenPen.position;
-			transform.rotation = chickenPen.rotation;
+			//transform.position = chickenPen.position;
+			//transform.rotation = chickenPen.rotation;
 			//currentHealth = maxHealth;
-			//Destroy(gameObject);
+			Destroy(gameObject);
 		}
 	}
 }

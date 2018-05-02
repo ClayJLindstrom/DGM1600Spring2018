@@ -39,6 +39,11 @@ public class CubeMovingScript : MonoBehaviour {
 		if(Input.GetKey(KeyCode.A)){
 			transform.Translate(Vector3.left * moveSpeed *  Time.deltaTime);
 		}*/
+		if(transform.rotation.eulerAngles != new Vector3(0, transform.rotation.eulerAngles.y, 0)){
+			Quaternion rotate = transform.rotation;
+			rotate.eulerAngles = new Vector3(0, rotate.eulerAngles.y, 0);
+			transform.rotation = rotate;
+		}
 	}
 
 	void OnCollisionEnter(Collision other){
